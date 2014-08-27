@@ -1,0 +1,64 @@
+Name: gstreamer1-plugins-good
+Version: 1.4.1
+Release: 1
+Group: Applications/Multimedia
+License: LGPLv2+
+Summary: GStreamer plugins with good code and licensing
+Description: |
+  GStreamer is a streaming media framework, based on graphs of filters which
+  operate on media data. Applications using this library can do anything
+  from real-time sound processing to playing videos, and just about anything
+  else media-related.  Its plugin-based architecture means that new data
+  types or processing capabilities can be added simply by installing new
+  plug-ins.
+
+  GStreamer Good Plugins is a collection of well-supported plugins of
+  good quality and under the LGPL license.
+URL: http://gstreamer.freedesktop.org/
+Sources:
+    - "%{name}-%{version}.tar.xz"
+SetupOptions: -q -n %{name}-%{version}/upstream
+
+Macros:
+    - majorminor;1.0
+
+PkgBR:
+    - bison
+    - flex
+    - libjpeg-devel
+    - gettext-devel
+    - intltool
+PkgConfigBR:
+    - gstreamer-1.0
+    - gstreamer-plugins-base-1.0
+    - orc-0.4 >= 0.4.18
+    - python
+    - speex
+    - glib-2.0
+    - libsoup-2.4
+    - pango
+    - alsa
+    - libpulse
+    - taglib
+    - flac
+    - gudev-1.0
+
+NoAutoLocale: true
+
+FilesInput: gst-plugins-good-%{majorminor}.lang
+
+ConfigOptions:
+    - --with-package-name='Maui GStreamer package'
+    - --with-package-origin='http://www.maui-project.org/'
+    - --with-default-visualizer=autoaudiosink
+    - --enable-experimental
+    - --enable-gtk-doc=no
+    - --enable-introspection=no
+    - --enable-orc
+    - --disable-monoscope
+    - --disable-aalib
+    - --disable-cairo
+    - --disable-libcaca
+    - --disable-jack
+    - --disable-examples
+    - --disable-freetypetest
